@@ -1,0 +1,27 @@
+@import "~node-sass/scss/__variables.scss";
+
+.title {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 6px;
+  width: 50%;
+  margin: 1rem auto;
+  border: 1px solid $backgroundColor;
+  background: $backgroundColor;
+  transition: background 1.5s linear;
+  h4 {
+    color: $primaryColor;
+    text-transform: uppercase;
+    letter-spacing: 0.12rem;
+    word-spacing: 0.6rem;
+    transition: color 2.5s ease-in-out;
+  }
+  &:hover {
+    background-color: $primaryColor;
+    h4 {
+      color: $backgroundColor;
+    }
+  }
+}
+
+

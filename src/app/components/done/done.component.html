@@ -1,0 +1,49 @@
+<ul class="collection with-header">
+  <li class="collection-header center"><h4>Done</h4></li>
+  <li class="collection-item" *ngFor="let done of dones">
+    <div>{{done.name}}
+      <a href="#modal-done-edit" class="secondary-content modal-trigger" (click)="GetDataByIdTask(done.id)"><i
+        class="material-icons">edit</i></a>
+      <a href="#" class="secondary-content" (click)="DeleteTask(done.id)"><i
+        class="material-icons">delete_forever</i></a>
+    </div>
+  </li>
+  <li class="collection-item center">
+    <a class="btn-floating waves-effect waves-light btn btn-small modal-trigger" href="#modal-done-add"><i
+      class="material-icons">add</i></a>
+  </li>
+</ul>
+
+<form id="modal-done-edit" class="modal modal-fixed-footer"
+      #fDoneUpdate="ngForm"
+      (ngSubmit)="UpdateTask(fDoneUpdate.value)">
+  <div class="modal-content">
+    <label for="name">Name</label>
+    <input id="name" type="text" name="name" [(ngModel)]="done.name" value="{{data.name}}"
+           (keypress)="HandleEventKeyPress($event.keyCode)" required/>
+    <label for="content">Content</label>
+    <input id="content" type="text" name="content" [(ngModel)]="done.content" value="{{data.content}}"
+           (keypress)="HandleEventKeyPress($event.keyCode)" required/>
+  </div>
+  <div class="modal-footer">
+    <a class="modal-action modal-close waves-effect waves-green btn-flat" type="submit"
+       (click)="UpdateTask(fDoneUpdate.value)">Update</a>
+    <a href="#" class="modal-action modal-close waves-effect waves-green btn-flat"
+       (click)="HandleEventKeyPress($event.keyCode)">Cancel</a>
+  </div>
+</form>
+
+<form id="modal-done-add" class="modal modal-fixed-footer" #fDoneCreate="ngForm"
+      (ngSubmit)="CreateTask(fDoneCreate.value)">
+  <div class="modal-content">
+    <label for="name-add">Name</label>
+    <input id="name-add" type="text" name="name" [(ngModel)]="done.name" required/>
+    <label for="content-add">Content</label>
+    <input id="content-add" type="text" name="content" [(ngModel)]="done.content" required/>
+  </div>
+  <div class="modal-footer">
+    <a class="modal-action modal-close waves-effect waves-green btn-flat" type="submit"
+       (click)="CreateTask(fDoneCreate.value)">Add</a>
+    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+  </div>
+</form>

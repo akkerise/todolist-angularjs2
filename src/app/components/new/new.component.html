@@ -1,0 +1,50 @@
+<ul class="collection with-header">
+  <li class="collection-header center"><h4>New</h4></li>
+  <li class="collection-item" *ngFor="let new of news">
+    <div>{{new.name}}
+      <a href="#modal-new-edit" class="secondary-content waves-effect waves-light modal-trigger"
+         (click)="GetDataByIdTask(new.id)">
+        <i class="material-icons">edit</i>
+      </a>
+      <a href="#" class="secondary-content waves-effect waves-light"
+         (click)="DeleteTask(new.id)"><i
+        class="material-icons">delete_forever</i>
+      </a>
+    </div>
+  </li>
+  <li class="collection-item center">
+    <a class="btn-floating waves-effect waves-light btn btn-small modal-trigger" href="#modal-new-add"><i
+      class="material-icons">add</i></a>
+  </li>
+</ul>
+
+<form id="modal-new-edit" class="modal modal-fixed-footer" #fNewUpdate="ngForm"
+      (ngSubmit)="UpdateTask(fNewUpdate.value)">
+  <div class="modal-content">
+    <input type="text" name="name" [(ngModel)]="new.name" value="{{data.name}}"
+           (keypress)="HandleEventKeyPress($event.keyCode)" required/>
+    <input type="text" name="content" [(ngModel)]="new.content" value="{{data.content}}"
+           (keypress)="HandleEventKeyPress($event.keyCode)" required/>
+  </div>
+  <div class="modal-footer">
+    <a class="modal-action modal-close waves-effect waves-green btn-flat" type="submit"
+       (click)="UpdateTask(fNewUpdate.value)">Update</a>
+    <a href="#" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+  </div>
+</form>
+
+
+<form id="modal-new-add" class="modal modal-fixed-footer" #fNewCreate="ngForm"
+      (ngSubmit)="CreateTask(fNewCreate.value)">
+  <div class="modal-content">
+    <label for="name-add">Name</label>
+    <input id="name-add" type="text" name="name" [(ngModel)]="new.name" required/>
+    <label for="content-add">Content</label>
+    <input id="content-add" type="text" name="content" [(ngModel)]="new.content" required/>
+  </div>
+  <div class="modal-footer">
+    <a class="modal-action modal-close waves-effect waves-green btn-flat" type="submit"
+       (click)="CreateTask(fNewCreate.value)">Add</a>
+    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+  </div>
+</form>

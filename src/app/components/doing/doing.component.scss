@@ -1,0 +1,12 @@
+@import "~node-sass/scss/__variables.scss";
+
+ul {
+  li {
+    &:hover {
+      background-color: #ddd;
+    }
+    h4 {
+      color: $primaryColor;
+    }
+  }
+}
